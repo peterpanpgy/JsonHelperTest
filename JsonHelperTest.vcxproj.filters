@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\App">
+      <UniqueIdentifier>{cac3c7a2-de95-4c1c-9a0d-c2768c586541}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App">
+      <UniqueIdentifier>{012c1e92-9631-4553-92ed-00981f1f1dbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Jsoncpp">
+      <UniqueIdentifier>{a549021f-08f1-494c-b967-a3867eb40366}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Jsoncpp">
+      <UniqueIdentifier>{8295d0fa-3062-4ef9-98f0-a0688390e20a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\JsonHelper">
+      <UniqueIdentifier>{e3aae633-0dec-4bd5-8775-9cff0c1b351d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\JsonHelper">
+      <UniqueIdentifier>{36436399-d698-4ec5-aa98-b716a026fa99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\SingleFrameModel">
+      <UniqueIdentifier>{c906f468-d8dc-483d-a508-cea6b8da77cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SingleFrameModel">
+      <UniqueIdentifier>{5229ad80-35a1-4f32-909f-98dd47f91695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\TestModel">
+      <UniqueIdentifier>{2d4130ed-aa8a-4b4a-b73b-9d7586c2a7b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TestModel">
+      <UniqueIdentifier>{67ec7c0c-0b91-47c9-8bc9-97871b0bbfca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\JsonHelperTest.rc2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\JsonHelperTest.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="json_valueiterator.inl">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="JsonHelperTest.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonHelperTestDlg.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files\App</Filter>
+    </ClInclude>
+    <ClInclude Include="json\allocator.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\writer.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\assertions.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\autolink.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\config.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\features.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\forwards.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\reader.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\value.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json\version.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="json_tool.h">
+      <Filter>Header Files\Jsoncpp</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonHelper.h">
+      <Filter>Header Files\JsonHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonObject.h">
+      <Filter>Header Files\JsonHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonObjects.h">
+      <Filter>Header Files\JsonHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="CoordinateSystem.h">
+      <Filter>Header Files\SingleFrameModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Frame.h">
+      <Filter>Header Files\SingleFrameModel</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameSegment.h">
+      <Filter>Header Files\SingleFrameModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files\SingleFrameModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Animal.h">
+      <Filter>Header Files\TestModel</Filter>
+    </ClInclude>
+    <ClInclude Include="OneObject.h">
+      <Filter>Header Files\TestModel</Filter>
+    </ClInclude>
+    <ClInclude Include="People.h">
+      <Filter>Header Files\TestModel</Filter>
+    </ClInclude>
+    <ClInclude Include="TestModel.h">
+      <Filter>Header Files\TestModel</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityLoadCaseKey.h">
+      <Filter>Header Files\SingleFrameModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files\SingleFrameModel</Filter>
+    </ClInclude>
+    <ClInclude Include="Joint.h">
+      <Filter>Header Files\SingleFrameModel</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="JsonHelperTest.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonHelperTestDlg.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
+    <ClCompile Include="json_reader.cpp">
+      <Filter>Source Files\Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="json_value.cpp">
+      <Filter>Source Files\Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="json_writer.cpp">
+      <Filter>Source Files\Jsoncpp</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonHelper.cpp">
+      <Filter>Source Files\JsonHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonObject.cpp">
+      <Filter>Source Files\JsonHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="CoordinateSystem.cpp">
+      <Filter>Source Files\SingleFrameModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Frame.cpp">
+      <Filter>Source Files\SingleFrameModel</Filter>
+    </ClCompile>
+    <ClCompile Include="FrameSegment.cpp">
+      <Filter>Source Files\SingleFrameModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Source Files\SingleFrameModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Animal.cpp">
+      <Filter>Source Files\TestModel</Filter>
+    </ClCompile>
+    <ClCompile Include="OneObject.cpp">
+      <Filter>Source Files\TestModel</Filter>
+    </ClCompile>
+    <ClCompile Include="People.cpp">
+      <Filter>Source Files\TestModel</Filter>
+    </ClCompile>
+    <ClCompile Include="TestModel.cpp">
+      <Filter>Source Files\TestModel</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityLoadCaseKey.cpp">
+      <Filter>Source Files\SingleFrameModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files\SingleFrameModel</Filter>
+    </ClCompile>
+    <ClCompile Include="Joint.cpp">
+      <Filter>Source Files\SingleFrameModel</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="JsonHelperTest.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
