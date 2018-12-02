@@ -100,8 +100,11 @@
     <None Include="res\JsonHelperTest.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Peter%27s OneDrive\OneDrive\Codes\JsonHelperTest\ClassSystem.h" />
     <ClInclude Include="Animal.h" />
+    <ClInclude Include="ClassData.h" />
     <ClInclude Include="CoordinateSystem.h" />
+    <ClInclude Include="FieldData.h" />
     <ClInclude Include="Frame.h" />
     <ClInclude Include="FrameSegment.h" />
     <ClInclude Include="GravityLoadCaseKey.h" />
@@ -133,8 +136,11 @@
     <ClInclude Include="TestModel.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Peter%27s OneDrive\OneDrive\Codes\JsonHelperTest\ClassSystem.cpp" />
     <ClCompile Include="Animal.cpp" />
+    <ClCompile Include="ClassData.cpp" />
     <ClCompile Include="CoordinateSystem.cpp" />
+    <ClCompile Include="FieldData.cpp" />
     <ClCompile Include="Frame.cpp" />
     <ClCompile Include="FrameSegment.cpp" />
     <ClCompile Include="GravityLoadCaseKey.cpp" />

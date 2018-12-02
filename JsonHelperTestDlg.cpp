@@ -1,7 +1,3 @@
-
-// JsonHelperTestDlg.cpp : implementation file
-//
-
 #include "stdafx.h"
 #include "JsonHelperTest.h"
 #include "JsonHelperTestDlg.h"
@@ -9,6 +5,7 @@
 #include "JsonHelper.h"
 #include "Shape.h"
 #include "TestModel.h"
+#include "ClassSystem.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -69,6 +66,7 @@ BEGIN_MESSAGE_MAP(CJsonHelperTestDlg, CDialogEx)
 	ON_BN_CLICKED(ID_SELECT_FILE, &CJsonHelperTestDlg::OnBnClickedSelectFile)
 	ON_BN_CLICKED(ID_SINGLE_FRAME_MODEL, &CJsonHelperTestDlg::OnBnClickedSingleFrameModel)
 	ON_BN_CLICKED(ID_TEST_MODEL, &CJsonHelperTestDlg::OnBnClickedTestModel)
+	ON_BN_CLICKED(ID_GENERATE_CLASSES, &CJsonHelperTestDlg::OnBnClickedGenerateClasses)
 END_MESSAGE_MAP()
 
 
@@ -209,4 +207,16 @@ void CJsonHelperTestDlg::OnBnClickedTestModel()
 	jsonHelperWrite.WriteFile(strFileNameOutput, true);
 
 	AfxMessageBox( "\"" + strFileNameOutput + "\" generated!");
+}
+
+
+void CJsonHelperTestDlg::OnBnClickedGenerateClasses()
+{
+	CString strFileName;
+	GetDlgItemText(IDC_EDIT_FILE_NAME, strFileName);
+
+	ClassSystem classSystem;	
+	classSystem.GenerateClasses(strFileName);
+
+	AfxMessageBox("Files have been generated in the same diretory.");
 }

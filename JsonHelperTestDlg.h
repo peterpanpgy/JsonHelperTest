@@ -33,4 +33,5 @@ public:
 	afx_msg void OnBnClickedSelectFile();
 	afx_msg void OnBnClickedSingleFrameModel();
 	afx_msg void OnBnClickedTestModel();
+	afx_msg void OnBnClickedGenerateClasses();
 };

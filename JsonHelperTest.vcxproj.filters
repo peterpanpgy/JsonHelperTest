@@ -43,6 +43,18 @@
     <Filter Include="Source Files\TestModel">
       <UniqueIdentifier>{67ec7c0c-0b91-47c9-8bc9-97871b0bbfca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\ClassGenerator">
+      <UniqueIdentifier>{fa82467a-214f-4490-ad2f-077ace4e843f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ClassGenerator">
+      <UniqueIdentifier>{0633660d-2f2a-4cc1-9637-83105a099058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ViewModel">
+      <UniqueIdentifier>{8003974e-a3d8-447a-8072-daf193434a62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ViewModel">
+      <UniqueIdentifier>{c8bd24ab-7ae6-48de-8a3b-9b7f5898e2d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -150,6 +162,15 @@
     <ClInclude Include="Joint.h">
       <Filter>Header Files\SingleFrameModel</Filter>
     </ClInclude>
+    <ClInclude Include="FieldData.h">
+      <Filter>Header Files\ClassGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassData.h">
+      <Filter>Header Files\ClassGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Peter%27s OneDrive\OneDrive\Codes\JsonHelperTest\ClassSystem.h">
+      <Filter>Header Files\ClassGenerator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JsonHelperTest.cpp">
@@ -208,6 +229,15 @@
     </ClCompile>
     <ClCompile Include="Joint.cpp">
       <Filter>Source Files\SingleFrameModel</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldData.cpp">
+      <Filter>Source Files\ClassGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassData.cpp">
+      <Filter>Source Files\ClassGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Peter%27s OneDrive\OneDrive\Codes\JsonHelperTest\ClassSystem.cpp">
+      <Filter>Source Files\ClassGenerator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
