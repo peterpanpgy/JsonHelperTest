@@ -116,48 +116,91 @@ CString FieldData::MakeFirstUpper(const CString &strInput)
 	return first + strInput.Right(strInput.GetLength() - 1);
 }
 
-CString FieldData::GetClassName(const CString &strInput, bool isArray)
+CString FieldData::MakeField(const CString &strInput)
 {
-	if (strInput.Find("axis") != -1
-		|| strInput.Find("Axis") != -1)
+	return "m_" + strInput;
+}
+
+CString FieldData::GetClassName(const CString &strInput, bool isArray, vector<CString> existingNames)
+{
+	CString className = strInput;
+	if (className.Find("axis") != -1
+		|| className.Find("Axis") != -1)
 	{
-		return "Vector3D";
+		className = "Vector3D";
 	}
 
-	if (strInput == "origin"
-		|| strInput.Find("Point") != -1
-		|| strInput.Find("point") != -1)
+	if (className == "origin"
+		|| className.Find("Point") != -1
+		|| className.Find("point") != -1)
 	{
-		return "Point3D";
+		className = "Point3D";
 	}
 
-	if (strInput.Find("Joint") != -1
-		|| strInput.Find("joint") != -1)
+	if (className.Find("Joint") != -1
+		|| className.Find("joint") != -1)
 	{
-		return "Joint";
+		className = "Joint";
 	}
-
-	CString str = strInput;
 
 	if (isArray)
 	{
-		if (strInput.GetLength() > 3 && strInput.Right(3) == "ies")
-			str = strInput.Left(strInput.GetLength() - 3) + "y";
-		else if (strInput.GetLength() > 4 && (strInput.Right(4) == "shes" || strInput.Right(4) == "ches"))
-			str = strInput.Left(strInput.GetLength() - 2);
-		else if (strInput.GetLength() > 1 && strInput.Right(1) == "s")
-			str = strInput.Left(strInput.GetLength() - 1);
+		if (className.GetLength() > 3 && className.Right(3) == "ies")
+			className = className.Left(className.GetLength() - 3) + "y";
+		else if (className.GetLength() > 4 && (className.Right(4) == "shes" || className.Right(4) == "ches"))
+			className = className.Left(className.GetLength() - 2);
+		else if (className.GetLength() > 1 && className.Right(1) == "s")
+			className = className.Left(className.GetLength() - 1);
 	}
 
-	return MakeFirstUpper(str);
+	className = MakeFirstUpper(className);
+
+	while(true)
+	{
+		bool found = false;
+		for (int i = 0; i < (int)existingNames.size(); ++i)
+		{
+			if (existingNames[i] == className)
+			{
+				found = true;
+				break;
+			}
+		}
+
+		if (!found) return className;
+
+		int pos = className.ReverseFind('_');
+		if (pos == -1) 
+		{
+			className = className + "_1";
+		}
+		else
+		{
+			CString strIndex = className.Right(className.GetLength() - pos - 1);
+			int index = 1;
+			sscanf(strIndex, "%d", &index);
+			++index;
+			strIndex.Format("%d", index);
+			className = className.Left(pos + 1) + strIndex;
+		}
+	}
+
+	return className;
+}
+
+CString FieldData::StripField(const CString &strInput)
+{
+	if (strInput.GetLength() > 2 && strInput.Left(2) == "m_")
+		return strInput.Right(strInput.GetLength() - 2);
+	return strInput;
 }
 
 CString FieldData::GetJsonLine()
 {
-	if (Type == Json::objectValue)
-		return "jsonHelper.Json(\"" + VariableName + "\", \"" + TypeName + "\", (JsonObject **)&" + VariableName + ");";
+	if (Type == Json::objectValue || Type == Json::nullValue)
+		return "jsonHelper.Json(\"" + StripField(VariableName) + "\", \"" + TypeName + "\", (JsonObject **)&" + VariableName + ");";
 	else if (Type == Json::arrayValue && ItemInArrayType == Json::objectValue)
-		return "jsonHelper.Json(\"" + VariableName + "\", \"" + TypeName + "\", " + VariableName + ");";
+		return "jsonHelper.Json(\"" + StripField(VariableName) + "\", \"" + TypeName + "\", " + VariableName + ");";
 	else
-		return "jsonHelper.Json(\"" + VariableName + "\", " + VariableName + ");";
+		return "jsonHelper.Json(\"" + StripField(VariableName) + "\", " + VariableName + ");";
 }

@@ -39,6 +39,7 @@ public:
 		{
 			objects.Values.clear();
 			Json::Value &jsonValue = (*m_pCurValue)[fieldName];
+			if (jsonValue.isNull()) return;
 			ASSERT(jsonValue.isArray());
 			for (int i = 0; i < (int)jsonValue.size(); ++i)
 			{
@@ -68,6 +69,7 @@ public:
 		{
 			values.clear();
 			Json::Value &jsonValue = (*m_pCurValue)[fieldName];
+			if (jsonValue.isNull()) return;
 			ASSERT(jsonValue.isArray());
 			for (int i = 0; i < (int)jsonValue.size(); ++i)
 			{

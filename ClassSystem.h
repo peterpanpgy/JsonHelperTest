@@ -16,12 +16,13 @@ private:
 	ClassData *FindSimilarClassData(const ClassData &classData);
 	CString GetFileContent(const CString &strFileName);
 	void GenerateClasses(Json::Value &jsonValue, const CString &className, Json::Value *pJsonArray);
-	void GenerateDefaultClasses();
 	void GenerateClassFiles(const CString &strDir, const CString &strNameSpace);
 	int FindSameClassGroup(const CString &className);
 	void DealWithSameGroup();
 	void ReplaceFieldName(const CString &oldName, const CString &newName);
+	vector<CString> GetExistingClassNames();
 
+	static void DeleteDirectory(const CString &strDir);
 	static Json::Value *GetNotNULLItemInArray(const CString &variableName, Json::Value &jsonArray);
 	static Json::Value *GetNotEmptyArray(const CString &variableName, Json::Value &jsonArray);
 

@@ -53,19 +53,25 @@ CString ClassSystem::GetFileContent(const CString &strFileName)
   return text;
 }
 
-void ClassSystem::GenerateDefaultClasses()
-{
-	ClassData point("Point3D");
-	point.FieldDatas.push_back(FieldData(Json::realValue, Json::nullValue, "", "X"));
-	point.FieldDatas.push_back(FieldData(Json::realValue, Json::nullValue, "", "Y"));
-	point.FieldDatas.push_back(FieldData(Json::realValue, Json::nullValue, "", "Z"));
-	ClassDatas.push_back(point);
-
-	ClassData vector("Vector3D");
-	vector.FieldDatas.push_back(FieldData(Json::realValue, Json::nullValue, "", "X"));
-	vector.FieldDatas.push_back(FieldData(Json::realValue, Json::nullValue, "", "Y"));
-	vector.FieldDatas.push_back(FieldData(Json::realValue, Json::nullValue, "", "Z"));
-	ClassDatas.push_back(vector);
+void ClassSystem::DeleteDirectory(const CString &strDir)
+{   
+	CFileFind finder;
+	CString path;
+	path.Format("%s/*.*", strDir);
+	BOOL bWorking = finder.FindFile(path);
+	while(bWorking)
+	{
+		bWorking = finder.FindNextFile();
+		if(finder.IsDirectory() && !finder.IsDots())
+		{
+			DeleteDirectory(finder.GetFilePath());
+			RemoveDirectory(finder.GetFilePath());
+		}
+		else
+		{
+			DeleteFile(finder.GetFilePath());
+		}
+	}
 }
 
 void ClassSystem::GenerateClasses(const CString &strFileName)
@@ -78,17 +84,17 @@ void ClassSystem::GenerateClasses(const CString &strFileName)
 	if (!parsingSuccessful) return;
 
 	ClassDatas.clear();
-	GenerateDefaultClasses();
 
 	int pos = strFileName.ReverseFind('.');
 	CString strDir = strFileName.Left(pos);
-	RemoveDirectory(strDir);
+
+	DeleteDirectory(strDir);
 	CreateDirectory(strDir, NULL);
 
 	pos = strDir.ReverseFind('\\');
 	CString strRoot = strDir.Right(strDir.GetLength() - pos - 1);
 
-	GenerateClasses(root, strRoot, NULL);
+	GenerateClasses(root, FieldData::MakeFirstUpper(strRoot), NULL);
 	DealWithSameGroup();
 	GenerateClassFiles(strDir, FieldData::MakeFirstUpper(strRoot));
 }
@@ -143,6 +149,16 @@ Json::Value *ClassSystem::GetNotEmptyArray(const CString &variableName, Json::Va
 	return NULL;
 }
 
+vector<CString> ClassSystem::GetExistingClassNames()
+{
+	vector<CString> names;
+	for (list<ClassData>::iterator it = ClassDatas.begin(); it != ClassDatas.end(); ++it)
+	{
+		names.push_back(it->Name);
+	}
+	return names;
+}
+
 void ClassSystem::GenerateClasses(Json::Value &jsonValue, const CString &className, Json::Value *pJsonArray)
 {
 	ClassData classData(className);
@@ -159,20 +175,21 @@ void ClassSystem::GenerateClasses(Json::Value &jsonValue, const CString &classNa
 
 		if (jsonItem.type() == Json::objectValue)
 		{
-			typeName = FieldData::GetClassName(variableName, false);
+			typeName = FieldData::GetClassName(variableName, false, GetExistingClassNames());
 			GenerateClasses(jsonItem, typeName, NULL);
 		}
 		else if (jsonItem.type() == Json::nullValue)
 		{
+			Json::Value *pWorkingJsonItem = &jsonItem;
 			if (pJsonArray != NULL)
 			{
-				Json::Value *pNotNULLItem = GetNotNULLItemInArray(variableName, *pJsonArray);
-				if (pNotNULLItem != NULL) type = pNotNULLItem->type();
+				pWorkingJsonItem = GetNotNULLItemInArray(variableName, *pJsonArray);
+				type = pWorkingJsonItem->type();
 			}
-			
 			if (type == Json::objectValue || type == Json::nullValue)
 			{
-				typeName = FieldData::GetClassName(variableName, false);
+				typeName = FieldData::GetClassName(variableName, false, GetExistingClassNames());
+				GenerateClasses(*pWorkingJsonItem, typeName, pJsonArray);
 			}
 		}
 		else if (jsonItem.type() == Json::arrayValue)
@@ -187,7 +204,7 @@ void ClassSystem::GenerateClasses(Json::Value &jsonValue, const CString &classNa
 					ASSERT(itemInArrayType != Json::nullValue);
 					if (itemInArrayType == Json::objectValue)
 					{
-						typeName = FieldData::GetClassName(variableName, true);
+						typeName = FieldData::GetClassName(variableName, true, GetExistingClassNames());
 						GenerateClasses((*pJsonItemInArray)[0], typeName, pJsonItemInArray);
 					}
 				}
@@ -198,18 +215,21 @@ void ClassSystem::GenerateClasses(Json::Value &jsonValue, const CString &classNa
 				ASSERT(itemInArrayType != Json::nullValue);
 				if (itemInArrayType == Json::objectValue)
 				{
-					typeName = FieldData::GetClassName(variableName, true);
+					typeName = FieldData::GetClassName(variableName, true, GetExistingClassNames());
 					GenerateClasses(jsonItem[0], typeName, &jsonItem);
 				}
 			}
 		}
 
-		FieldData fieldData(type, itemInArrayType, typeName, FieldData::MakeFirstUpper(variableName));
+		FieldData fieldData(type, itemInArrayType, typeName, FieldData::MakeField(variableName));
 		classData.FieldDatas.push_back(fieldData);
 	}
 
-	if (classData.Name == "Point3D" || classData.Name == "Vector3D")
+	if (classData.FieldDatas.size() == 0)
+	{
+		ClassDatas.push_back(classData);
 		return;
+	}
 	
 	ClassData *pClassData = FindSameClassData(classData);
 	if (pClassData == NULL)

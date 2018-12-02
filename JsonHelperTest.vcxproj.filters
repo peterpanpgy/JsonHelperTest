@@ -49,12 +49,6 @@
     <Filter Include="Source Files\ClassGenerator">
       <UniqueIdentifier>{0633660d-2f2a-4cc1-9637-83105a099058}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\ViewModel">
-      <UniqueIdentifier>{8003974e-a3d8-447a-8072-daf193434a62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\ViewModel">
-      <UniqueIdentifier>{c8bd24ab-7ae6-48de-8a3b-9b7f5898e2d8}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />

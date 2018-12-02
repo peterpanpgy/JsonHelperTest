@@ -65,7 +65,7 @@ set<CString> ClassData::GetObjectTypeNames() const
 	set<CString> objectTypeNames;
 	for (list<FieldData>::const_iterator it = FieldDatas.begin(); it != FieldDatas.end(); ++it)
 	{
-		if (it->Type == Json::objectValue
+		if (it->Type == Json::objectValue || it->Type == Json::nullValue
 			|| it->Type == Json::arrayValue
 			&& it->ItemInArrayType == Json::objectValue)
 		{
@@ -80,7 +80,7 @@ vector<FieldData *> ClassData::GetObjectFieldDatas()
 	vector<FieldData *> objectFieldDatas;
 	for (list<FieldData>::iterator it = FieldDatas.begin(); it != FieldDatas.end(); ++it)
 	{
-		if (it->Type == Json::objectValue)
+		if (it->Type == Json::objectValue || it->Type == Json::nullValue)
 		{
 			objectFieldDatas.push_back(&(*it));
 		}
@@ -108,9 +108,9 @@ void ClassData::GenerateHeaderFile(const CString &strDir, const CString &strName
 	}
 
 	file.WriteString("\n");
-	file.WriteString("namespace " + strNameSpace + "\n");
-	file.WriteString("{\n");
-	file.WriteString("class " + Name + " : JsonObject\n");
+	//file.WriteString("namespace " + strNameSpace + "\n");
+	//file.WriteString("{\n");
+	file.WriteString("class " + Name + " : public JsonObject\n");
 	file.WriteString("{\n");
 	file.WriteString("\tDECLARE_JSONOBJECT(" + Name + ")\n");
 	file.WriteString("\n");
@@ -124,7 +124,7 @@ void ClassData::GenerateHeaderFile(const CString &strDir, const CString &strName
 		file.WriteString("\t" + itField->GetLine() + "\n");
 	}
 	file.WriteString("};\n");
-	file.WriteString("};\n");
+	//file.WriteString("};\n");
 
 	file.Close();
 }
@@ -147,8 +147,8 @@ void ClassData::GenerateCPPFile(const CString &strDir, const CString &strNameSpa
 	}
 
 	file.WriteString("\n");
-	file.WriteString("namespace " + strNameSpace + "\n");
-	file.WriteString("{\n");
+	//file.WriteString("namespace " + strNameSpace + "\n");
+	//file.WriteString("{\n");
 
 	file.WriteString(Name + "::" + Name + "(void)\n");
 	file.WriteString("{\n");
@@ -182,7 +182,7 @@ void ClassData::GenerateCPPFile(const CString &strDir, const CString &strNameSpa
 	}
 	file.WriteString("}\n");
 
-	file.WriteString("};\n");
+	//file.WriteString("};\n");
 
 	file.Close();
 }

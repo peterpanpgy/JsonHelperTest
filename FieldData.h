@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+using namespace std;
 
 class FieldData
 {
@@ -15,9 +17,11 @@ public:
 	CString GetLine() const;
 	CString GetJsonLine();
 	void Update(const FieldData &fieldData);
-
+	
 	static CString MakeFirstUpper(const CString &strInput);
-	static CString GetClassName(const CString &strInput, bool isArray);
+	static CString GetClassName(const CString &strInput, bool isArray, vector<CString> existingNames);
+	static CString MakeField(const CString &strInput);
+	static CString StripField(const CString &strInput);
 
 public:
 	Json::ValueType Type;
