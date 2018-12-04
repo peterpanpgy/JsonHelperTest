@@ -184,12 +184,18 @@ void ClassSystem::GenerateClasses(Json::Value &jsonValue, const CString &classNa
 			if (pJsonArray != NULL)
 			{
 				pWorkingJsonItem = GetNotNULLItemInArray(variableName, *pJsonArray);
-				type = pWorkingJsonItem->type();
+				if (pWorkingJsonItem != NULL)
+				{
+					type = pWorkingJsonItem->type();
+				}
 			}
 			if (type == Json::objectValue || type == Json::nullValue)
 			{
 				typeName = FieldData::GetClassName(variableName, false, GetExistingClassNames());
-				GenerateClasses(*pWorkingJsonItem, typeName, pJsonArray);
+				if (pWorkingJsonItem != NULL)
+				{
+					GenerateClasses(*pWorkingJsonItem, typeName, pJsonArray);
+				}
 			}
 		}
 		else if (jsonItem.type() == Json::arrayValue)
