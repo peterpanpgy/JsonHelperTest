@@ -142,6 +142,11 @@ CString FieldData::GetClassName(const CString &strInput, bool isArray, vector<CS
 	{
 		className = "Joint";
 	}
+	if (className.Find("Restraint") != -1
+		|| className.Find("restraint") != -1)
+	{
+		className = "Restraint";
+	}
 
 	if (isArray)
 	{
