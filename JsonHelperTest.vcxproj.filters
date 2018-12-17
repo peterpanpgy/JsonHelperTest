@@ -230,7 +230,7 @@
     <ClCompile Include="ClassData.cpp">
       <Filter>Source Files\ClassGenerator</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Peter%27s OneDrive\OneDrive\Codes\JsonHelperTest\ClassSystem.cpp">
+    <ClCompile Include="ClassSystem.cpp">
       <Filter>Source Files\ClassGenerator</Filter>
     </ClCompile>
   </ItemGroup>
